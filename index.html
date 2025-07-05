@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBySukhen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo_selected-portfolio.png" type="image/png">
+</head>
+
+<body class="relative">
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Custom Cursor (only on desktop) -->
+    <div class="cursor hidden md:block"></div>
+    <div class="cursor-follower hidden md:block"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-70 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="#home" class="flex items-center">
+                            <img src="images/final-logo_selected.png" alt="Logo" class="h-8 w-auto">
+                            <span class="ml-2 text-xl font-bold gradient-text">DevBySukhen</span>
+                            <!-- hidden sm:inline -->
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#about" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#services"
+                            class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                        <a href="#portfolio"
+                            class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#testimonials"
+                            class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium">Testimonials</a>
+                        <a href="#contact"
+                            class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-90">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-white">About</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-white">Services</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-white">Projects</a>
+                <a href="#testimonials"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-white">Testimonials</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home"
+        class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 animate-on-scroll"
+        data-animation="fadeIn">
+        <div class="absolute top-0 left-0 w-full h-full opacity-20">
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-purple-500 blur-3xl opacity-70"></div>
+            <div class="absolute top-2/3 right-1/3 w-40 h-40 rounded-full bg-cyan-500 blur-3xl opacity-70"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-28 h-28 rounded-full bg-pink-500 blur-3xl opacity-70"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fadeInUp" style="animation-delay: 0.2s;">
+                Hi, I'm <span class="gradient-text">Sukhen Das</span>
+            </h1>
+            <div class="typing text-xl md:text-2xl font-mono mb-8 mx-auto animate-fadeInUp"
+                style="animation-delay: 0.4s;">
+                <span class="fallback-text">Web Design & Development</span>
+            </div>
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-12 animate-fadeInUp"
+                style="animation-delay: 0.6s;">
+                I craft immersive digital experiences that blend stunning design with cutting-edge technology to help
+                brands stand out in the digital landscape.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 animate-fadeInUp" style="animation-delay: 0.8s;">
+                <a href="#portfolio"
+                    class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold text-white glow-hover hover:scale-105 transition-transform duration-300 btn-hover">
+                    View My Work
+                </a>
+                <a href="#contact"
+                    class="px-8 py-3 border-2 border-cyan-400 text-cyan-400 rounded-full font-semibold glow-hover hover:bg-cyan-400 hover:bg-opacity-10 hover:scale-105 transition-all duration-300 btn-hover">
+                    Let's Connect
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative animate-on-scroll" data-animation="fadeInUp" data-delay="0.1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">About Me</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/3 relative animate-slideInLeft">
+                    <div class="gradient-border p-1 rounded-full">
+                        <img src="images/port.1.jpg" alt="Profile" class="w-full h-auto rounded-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-5 -right-5 bg-gray-900 p-4 rounded-full glow">
+                        <div class="text-2xl font-bold gradient-text">1+</div>
+                        <div class="text-xs text-gray-400">Years Exp</div>
+                    </div>
+                </div>
+
+                <div class="lg:w-2/3 animate-slideInRight">
+
+                    <p class="text-gray-300 mb-6">
+                        I'm a passionate digital creator with over 1+ years of experience in web design and development.
+                        My journey began when I was just 18 years old, tinkering with HTML and CSS to create fan
+                        websites for my favorite video games. Since then, I've honed my skills through formal education
+                        and real-world projects, helping businesses of all sizes establish their digital presence.
+                    </p>
+                    <p class="text-gray-300 mb-8">
+                        What sets me apart is my unique blend of technical expertise and artistic vision. I don't just
+                        build websites - I create digital experiences that captivate audiences and drive results. When
+                        I'm not coding, you can find me sketching portraits, exploring new design trends, or mentoring
+                        aspiring developers.
+                    </p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg border border-gray-800">
+                            <div class="text-cyan-400 mb-2"><i class="fas fa-graduation-cap"></i></div>
+                            <h4 class="font-bold">Education</h4>
+                            <p class="text-sm text-gray-400">BCA (Honors)</p>
+                        </div>
+                        <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg border border-gray-800">
+                            <div class="text-purple-400 mb-2"><i class="fas fa-briefcase"></i></div>
+                            <h4 class="font-bold">Experience</h4>
+                            <p class="text-sm text-gray-400">1+ Years</p>
+                        </div>
+                        <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg border border-gray-800">
+                            <div class="text-pink-400 mb-2"><i class="fas fa-project-diagram"></i></div>
+                            <h4 class="font-bold">Projects</h4>
+                            <p class="text-sm text-gray-400">12+ Completed</p>
+                        </div>
+                    </div>
+
+                    <a href="pdf/Sukhendas_Resume.pdf" target="_blank"
+                        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 glow-hover btn-hover">
+                        <i class="fas fa-download mr-2"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 animate-on-scroll"
+        data-animation="fadeInUp">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="gradient-border p-6 rounded-lg text-center relative overflow-hidden">
+                    <div class="text-4xl font-bold gradient-text mb-2 counter" data-target="12">0</div>
+                    <h3 class="text-lg font-semibold">Projects Completed</h3>
+                    <div class="absolute -bottom-10 -right-10 text-8xl opacity-10"><i class="fas fa-code"></i></div>
+                </div>
+                <div class="gradient-border p-6 rounded-lg text-center relative overflow-hidden">
+                    <div class="text-4xl font-bold gradient-text mb-2 counter" data-target="5">0</div>
+                    <h3 class="text-lg font-semibold">Happy Clients</h3>
+                    <div class="absolute -bottom-10 -right-10 text-8xl opacity-10"><i class="fas fa-smile"></i></div>
+                </div>
+                <div class="gradient-border p-6 rounded-lg text-center relative overflow-hidden">
+                    <div class="text-4xl font-bold gradient-text mb-2 counter" data-target="1">0</div>
+                    <h3 class="text-lg font-semibold">Years Experience</h3>
+                    <div class="absolute -bottom-10 -right-10 text-8xl opacity-10"><i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div>
+                <div class="gradient-border p-6 rounded-lg text-center relative overflow-hidden">
+                    <div class="text-4xl font-bold gradient-text mb-2 counter" data-target="4">0</div>
+                    <h3 class="text-lg font-semibold">Awards Won</h3>
+                    <div class="absolute -bottom-10 -right-10 text-8xl opacity-10"><i class="fas fa-trophy"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 relative animate-on-scroll" data-animation="fadeInUp">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">My Services</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 max-w-2x2 mx-auto mt-6">
+                    I offer a comprehensive range of digital services to help your business thrive in the online world.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="gradient-border p-6 rounded-lg hover:shadow-lg transition-all duration-300 animate-on-scroll"
+                    data-animation="fadeInUp" data-delay="0.1">
+                    <div class="text-cyan-400 text-4xl mb-4"><i class="fas fa-laptop-code"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Web Design & Development</h3>
+                    <p class="text-gray-400">
+                        Custom, responsive websites built with the latest technologies to ensure optimal performance and
+                        user experience across all devices.
+                    </p>
+                </div>
+                <div class="gradient-border p-6 rounded-lg hover:shadow-lg transition-all duration-300 animate-on-scroll"
+                    data-animation="fadeInUp" data-delay="0.2">
+                    <div class="text-purple-400 text-4xl mb-4"><i class="fas fa-paint-brush"></i></div>
+                    <h3 class="text-xl font-bold mb-3">UI/UX Design</h3>
+                    <p class="text-gray-400">
+                        Intuitive interfaces and seamless user experiences that drive engagement and conversions through
+                        thoughtful design.
+                    </p>
+                </div>
+
+                <div class="gradient-border p-6 rounded-lg hover:shadow-lg transition-all duration-300 animate-on-scroll"
+                    data-animation="fadeInUp" data-delay="0.3">
+                    <div class="text-pink-400 text-4xl mb-4"><i class="fas fa-tools"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Website Maintenance & Optimization</h3>
+                    <p class="text-gray-400">
+                        Ensure your website runs smoothly with regular updates, performance tuning, security checks, and
+                        technical support.
+                    </p>
+                </div>
+
+
+                <div class="gradient-border p-6 rounded-lg hover:shadow-lg transition-all duration-300 animate-on-scroll"
+                    data-animation="fadeInUp" data-delay="0.4">
+                    <div class="text-yellow-400 text-4xl mb-4"><i class="fas fa-search"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Search Engine Optimization (SEO)</h3>
+                    <p class="text-gray-400">
+                        Improve your website’s visibility on search engines through keyword research, on-page
+                        optimization, and link building.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- projects Section -->
+    <section id="portfolio" class="py-20 bg-gray-900 bg-opacity-50 animate-on-scroll" data-animation="fadeInUp">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">My Projects</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-6">
+                    A selection of my recent work across various industries and project types.
+                </p>
+            </div>
+
+            <div class="portfolio-filter flex flex-wrap justify-center gap-3 mb-12">
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 active"
+                    data-filter="all">All Projects</button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                    data-filter="web">Web Design</button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                    data-filter="ui">UI/UX</button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                    data-filter="branding">Branding</button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                    data-filter="art">Digital Art</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 portfolio-items">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item group relative overflow-hidden rounded-lg web animate-on-scroll"
+                    data-category="web" data-animation="fadeInUp" data-delay="0.1">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+                        alt="E-commerce Website"
+                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                    <div
+                        class="absolute bottom-0 left-0 p-6 w-full transition-all duration-300 translate-y-20 group-hover:translate-y-0">
+                        <h3 class="text-xl font-bold text-white mb-2">Nexus E-commerce</h3>
+                        <p class="text-gray-300 mb-4">A modern online store with seamless checkout experience</p>
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item group relative overflow-hidden rounded-lg ui animate-on-scroll"
+                    data-category="ui" data-animation="fadeInUp" data-delay="0.2">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="Mobile App UI"
+                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                    <div
+                        class="absolute bottom-0 left-0 p-6 w-full transition-all duration-300 translate-y-20 group-hover:translate-y-0">
+                        <h3 class="text-xl font-bold text-white mb-2">Fitness App UI</h3>
+                        <p class="text-gray-300 mb-4">Workout tracking application with clean interface</p>
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item group relative overflow-hidden rounded-lg branding animate-on-scroll"
+                    data-category="branding" data-animation="fadeInUp" data-delay="0.3">
+                    <img src="https://images.unsplash.com/photo-1567443024551-f3e3a7b9d7ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="Brand Identity"
+                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                    <div
+                        class="absolute bottom-0 left-0 p-6 w-full transition-all duration-300 translate-y-20 group-hover:translate-y-0">
+                        <h3 class="text-xl font-bold text-white mb-2">Brew Haven Branding</h3>
+                        <p class="text-gray-300 mb-4">Complete visual identity for craft coffee brand</p>
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item group relative overflow-hidden rounded-lg web animate-on-scroll"
+                    data-category="web" data-animation="fadeInUp" data-delay="0.4">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
+                        alt="Corporate Website"
+                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                    <div
+                        class="absolute bottom-0 left-0 p-6 w-full transition-all duration-300 translate-y-20 group-hover:translate-y-0">
+                        <h3 class="text-xl font-bold text-white mb-2">Vertex Solutions</h3>
+                        <p class="text-gray-300 mb-4">Corporate website for tech consulting firm</p>
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-item group relative overflow-hidden rounded-lg art animate-on-scroll"
+                    data-category="art" data-animation="fadeInUp" data-delay="0.5">
+                    <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80"
+                        alt="Digital Portrait"
+                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                    <div
+                        class="absolute bottom-0 left-0 p-6 w-full transition-all duration-300 translate-y-20 group-hover:translate-y-0">
+                        <h3 class="text-xl font-bold text-white mb-2">Character Portrait</h3>
+                        <p class="text-gray-300 mb-4">Digital painting for fantasy book cover</p>
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-item group relative overflow-hidden rounded-lg ui animate-on-scroll"
+                    data-category="ui" data-animation="fadeInUp" data-delay="0.6">
+                    <img src="https://images.unsplash.com/photo-1555774698-0f77d0a5f80e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="Dashboard UI"
+                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                    <div
+                        class="absolute bottom-0 left-0 p-6 w-full transition-all duration-300 translate-y-20 group-hover:translate-y-0">
+                        <h3 class="text-xl font-bold text-white mb-2">Analytics Dashboard</h3>
+                        <p class="text-gray-300 mb-4">Data visualization interface for business metrics</p>
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button id="view-all-projects"
+                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 glow-hover btn-hover">
+                    View All Projects <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 animate-on-scroll" data-animation="fadeInUp">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Frequently Asked Questions</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-6">
+                    Find answers to common questions about my services and workflow to help you get a clearer picture
+                    before we connect.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item rounded-lg overflow-hidden border border-gray-800 animate-on-scroll"
+                    data-animation="fadeInUp" data-delay="0.1">
+                    <button
+                        class="faq-question w-full text-left p-6 bg-gray-900 hover:bg-gray-800 transition-colors duration-300 flex justify-between items-center">
+                        <span class="text-lg font-medium">What's your typical project timeline?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content bg-gray-900 bg-opacity-50">
+                        <div class="p-6 pt-0 text-gray-300">
+                            Project timelines vary depending on scope and complexity. A standard website typically takes
+                            4-8 weeks from initial consultation to launch. More complex projects like e-commerce sites
+                            or custom web applications may take 8-12 weeks or longer. I'll provide a detailed timeline
+                            after our initial discussion and scope definition.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item rounded-lg overflow-hidden border border-gray-800 animate-on-scroll"
+                    data-animation="fadeInUp" data-delay="0.2">
+                    <button
+                        class="faq-question w-full text-left p-6 bg-gray-900 hover:bg-gray-800 transition-colors duration-300 flex justify-between items-center">
+                        <span class="text-lg font-medium">Do you offer ongoing maintenance after launch?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content bg-gray-900 bg-opacity-50">
+                        <div class="p-6 pt-0 text-gray-300">
+                            Yes, I offer several maintenance packages to suit different needs. These can include regular
+                            updates, security monitoring, performance optimization, and content updates. Many clients
+                            find value in retaining my services post-launch to ensure their site remains secure,
+                            up-to-date, and performing optimally.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item rounded-lg overflow-hidden border border-gray-800 animate-on-scroll"
+                    data-animation="fadeInUp" data-delay="0.3">
+                    <button
+                        class="faq-question w-full text-left p-6 bg-gray-900 hover:bg-gray-800 transition-colors duration-300 flex justify-between items-center">
+                        <span class="text-lg font-medium">What technologies do you work with?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content bg-gray-900 bg-opacity-50">
+                        <div class="p-6 pt-0 text-gray-300">
+                            My core stack includes HTML5, CSS3, JavaScript (ES6+), React, Node.js, and various CMS
+                            platforms like WordPress and Shopify. I'm also proficient with design tools like Figma,
+                            Adobe XD, and Photoshop. I stay current with emerging technologies and can recommend the
+                            best solutions for your specific project needs.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item rounded-lg overflow-hidden border border-gray-800 animate-on-scroll"
+                    data-animation="fadeInUp" data-delay="0.4">
+                    <button
+                        class="faq-question w-full text-left p-6 bg-gray-900 hover:bg-gray-800 transition-colors duration-300 flex justify-between items-center">
+                        <span class="text-lg font-medium">How do you handle revisions and feedback?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content bg-gray-900 bg-opacity-50">
+                        <div class="p-6 pt-0 text-gray-300">
+                            Collaboration is key to successful projects. I include a set number of revision rounds in my
+                            proposals (typically 2-3). We'll use project management tools to track feedback and changes.
+                            For larger projects, I schedule regular check-ins to review progress and gather your input
+                            at key milestones.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item rounded-lg overflow-hidden border border-gray-800 animate-on-scroll"
+                    data-animation="fadeInUp" data-delay="0.5">
+                    <button
+                        class="faq-question w-full text-left p-6 bg-gray-900 hover:bg-gray-800 transition-colors duration-300 flex justify-between items-center">
+                        <span class="text-lg font-medium">What's your pricing structure?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content bg-gray-900 bg-opacity-50">
+                        <div class="p-6 pt-0 text-gray-300">
+                            I offer both fixed-price projects for well-defined scopes and hourly rates for more
+                            open-ended work. After our initial consultation, I'll provide a detailed proposal with
+                            pricing based on your specific requirements. Most web projects range from $2,000-$10,000
+                            depending on complexity, while branding projects typically start at $1,500.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- testmonial -->
+    <section id="testimonials" class="py-20 bg-gray-900 bg-opacity-50 animate-on-scroll" data-animation="fadeInUp">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Client Testimonials</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-6">
+                    Don't just take my word for it - here's what my clients have to say.
+                </p>
+            </div>
+
+            <div class="testimonial-slider-wrapper">
+                <div id="testimonial-track">
+                    <!-- Testimonial cards here -->
+                    <div class="testimonial-card">
+                        <div class="flex items-center mb-4">
+                            <img src="images/raja.jpg" alt="raja" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-bold text-white">Raja Das</h4>
+                                <p class="text-sm text-gray-400">Student</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 italic">
+                            It was a joy working with Sukhen. He understood our vision, refined our ideas, and built an
+                            e-commerce platform that truly wowed us.
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="flex items-center mb-4">
+                            <img src="images/niraj.jpg" alt="niraj" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-bold text-white">Niraj Shing</h4>
+                                <p class="text-sm text-gray-400">Student</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 italic">
+                            Incredible branding work — Sukhen captured our ethos and created an identity our customers
+                            truly connect with.
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="flex items-center mb-4">
+                            <img src="images/sandip.png" alt="sandip" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-bold text-white">Sandip Mayti</h4>
+                                <p class="text-sm text-gray-400">Student</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 italic">
+                            "We’re extremely satisfied with the landing page Sukhen created for our campaign — it’s
+                            fast, highly efficient, and elegantly coded."
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="flex items-center mb-4">
+                            <img src="images/ranjan.jpg" alt="ranjan" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-bold text-white">Ranjan Mondal</h4>
+                                <p class="text-sm text-gray-400">Student</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 italic">
+                            We are thoroughly impressed with the landing page Sukhen crafted for our campaign — it
+                            combines speed, efficiency, and exceptional code quality.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Feedback Form -->
+            <div class="max-w-2xl mx-auto bg-gray-900 bg-opacity-70 rounded-lg p-8 gradient-border animate-on-scroll mt-16"
+                data-animation="scaleIn">
+                <h3 class="text-xl font-bold mb-6 text-center text-white">Share Your Experience</h3>
+                <form id="testimonial-form" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                        <input type="text" id="name"
+                            class="w-full px-4 py-2 rounded-lg input-field text-white bg-gray-800" required>
+                    </div>
+                    <div>
+                        <label for="role" class="block text-sm font-medium text-gray-300 mb-1">Your Role/Company</label>
+                        <input type="text" id="role"
+                            class="w-full px-4 py-2 rounded-lg input-field text-white bg-gray-800" required>
+                    </div>
+                    <div>
+                        <label for="rating" class="block text-sm font-medium text-gray-300 mb-1">Rating</label>
+                        <div class="flex space-x-2">
+                            <button type="button" class="rating-star text-gray-400 hover:text-yellow-400"
+                                data-value="1"><i class="fas fa-star"></i></button>
+                            <button type="button" class="rating-star text-gray-400 hover:text-yellow-400"
+                                data-value="2"><i class="fas fa-star"></i></button>
+                            <button type="button" class="rating-star text-gray-400 hover:text-yellow-400"
+                                data-value="3"><i class="fas fa-star"></i></button>
+                            <button type="button" class="rating-star text-gray-400 hover:text-yellow-400"
+                                data-value="4"><i class="fas fa-star"></i></button>
+                            <button type="button" class="rating-star text-gray-400 hover:text-yellow-400"
+                                data-value="5"><i class="fas fa-star"></i></button>
+                        </div>
+                        <input type="hidden" id="rating-value" value="0" required>
+                    </div>
+                    <div>
+                        <label for="testimonial" class="block text-sm font-medium text-gray-300 mb-1">Your Honest
+                            Feedback Matters
+                        </label>
+                        <textarea id="testimonial" rows="4"
+                            class="w-full px-4 py-2 rounded-lg input-field text-white bg-gray-800" required></textarea>
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit"
+                            class="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold text-white glow-hover hover:scale-105 transition-transform duration-300 btn-hover">
+                            Submit Feedback
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative animate-on-scroll" data-animation="fadeInUp">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Get In Touch</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-6">
+                    If you have a project in mind or would like to discuss a potential collaboration, I’d be happy to
+                    hear from you. I look forward to your message!
+                </p>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2 animate-on-scroll" data-animation="slideInLeft">
+                    <div class="gradient-border p-8 rounded-lg h-full">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="text-cyan-400 text-xl mr-4 mt-1"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Email</h4>
+                                    <a href="mailto:hello@techfolio.dev"
+                                        class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">devbysukhen@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-purple-400 text-xl mr-4 mt-1"><i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Location</h4>
+                                    <p class="text-gray-400">West Bengal, Purba Medinipur, 721431</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-pink-400 text-xl mr-4 mt-1"><i class="fas fa-clock"></i></div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Availability</h4>
+                                    <p class="text-gray-400">Monday - Friday: 9am - 5pm IST</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-12">
+                            <h4 class="font-medium mb-4">Connect With Me</h4>
+                            <div class="flex space-x-6">
+                                <a href="https://x.com/?lang=en" target="_blank"
+                                    class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+                                    <i class="fab fa-twitter text-2xl"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/sukhen-9832das" target="_blank"
+                                    class="text-gray-400 hover:text-blue-600 transition-colors duration-300">
+                                    <i class="fab fa-linkedin-in text-2xl"></i>
+                                </a>
+                                <a href="https://wa.me/919832695291?text=Hello%20Sukhen%2C%20I%20am%20interested%20in%20your%20services."
+                                    target="_blank"
+                                    class="text-gray-400 hover:text-green-500 transition-colors duration-300">
+                                    <i class="fab fa-whatsapp text-2xl"></i>
+                                </a>
+                                <a href="https://github.com/Publo-52" target="_blank"
+                                    class="text-gray-400 hover:text-purple-600 transition-colors duration-300">
+                                    <i class="fab fa-github text-2xl"></i>
+                                </a>
+                                <a href="sms:9832695291"
+                                    class="text-gray-400 hover:text-yellow-500 transition-colors duration-300"
+                                    aria-label="Send SMS to Sukhen">
+                                    <i class="fas fa-sms text-2xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 animate-on-scroll" data-animation="slideInRight">
+                    <div class="gradient-border p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
+                        <form id="contact-form" class="space-y-6" onsubmit="event.preventDefault(); sendMail();">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="first-name" class="block text-sm font-medium text-gray-300 mb-1">First
+                                        Name</label>
+                                    <input type="text" id="first-name"
+                                        class="w-full px-4 py-2 rounded-lg input-field text-white" required>
+                                </div>
+                                <div>
+                                    <label for="last-name" class="block text-sm font-medium text-gray-300 mb-1">Last
+                                        Name</label>
+                                    <input type="text" id="last-name"
+                                        class="w-full px-4 py-2 rounded-lg input-field text-white" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                                <input type="email" id="email"
+                                    class="w-full px-4 py-2 rounded-lg input-field text-white" required>
+                            </div>
+                            <div>
+                                <label for="subject"
+                                    class="block text-sm font-medium text-gray-300 mb-1">Subject</label>
+                                <input type="text" id="subject"
+                                    class="w-full px-4 py-2 rounded-lg input-field text-white" required>
+                            </div>
+                            <div>
+                                <label for="message"
+                                    class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                                <textarea id="message" rows="5"
+                                    class="w-full px-4 py-2 rounded-lg input-field text-white" required></textarea>
+                            </div>
+                            <div class="pt-2">
+                                <button id="sendBtn" type="submit"
+                                    class="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold text-white glow-hover hover:scale-105 transition-transform duration-300 btn-hover">
+                                    <span id="btnText">Send Message</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black bg-opacity-70 animate-on-scroll" data-animation="fadeInUp">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-3">
+                        <img src="images/final-logo_selected.png" alt="DevBySukhen Logo" class="h-10 w-auto">
+                        <span class="text-2xl font-bold gradient-text">DevBySukhen</span>
+                    </div>
+                    <p class="text-gray-400 mt-2 pl-[52px]">
+                        We craft digital experiences that spark thought, inspire action, and empower people through <br>
+                        technology—making their journey toward achieving dreams smoother, smarter, and more meaningful.
+                        <br>
+                        That’s our digital mission.
+                    </p>
+                </div>
+
+                <div class="flex space-x-6">
+                    <a href="https://x.com/?lang=en" target="_blank"
+                        class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sukhen-9832das" target="_blank"
+                        class="text-gray-400 hover:text-blue-600 transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-2xl"></i>
+                    </a>
+                    <a href="https://wa.me/919832695291?text=Hello%20Sukhen%2C%20I%20am%20interested%20in%20your%20services."
+                        target="_blank" class="text-gray-400 hover:text-green-500 transition-colors duration-300">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                    </a>
+                    <a href="https://github.com/Publo-52" target="_blank"
+                        class="text-gray-400 hover:text-purple-600 transition-colors duration-300">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="sms:9832695291" class="text-gray-400 hover:text-yellow-500 transition-colors duration-300"
+                        aria-label="Send SMS to Sukhen">
+                        <i class="fas fa-sms text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 DevBySukhen Portfolio. All rights reserved. Designed with <i
+                        class="fas fa-heart text-red-500"></i>
+                    by DevBySukhen</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed WhatsApp & Message Icons -->
+    <div class="fixed bottom-28 right-4 flex flex-col items-center z-50">
+        <!-- WhatsApp Icon -->
+        <a href="https://wa.me/919832695291?text=Hello%20Sukhen%2C%20I%20am%20interested%20in%20your%20services."
+            target="_blank"
+            class="mb-4 w-12 h-12 bg-transparent rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:text-cyan-400 hover:border-cyan-400 transition-all duration-300">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+
+        <!-- Message Icon -->
+        <a href="sms:9832695291"
+            class="w-12 h-12 bg-transparent rounded-full flex items-center justify-center border border-gray-600 text-gray-400 hover:text-cyan-400 hover:border-cyan-400 transition-all duration-300">
+            <i class="fas fa-comment text-2xl"></i>
+        </a>
+    </div>
+
+
+    <!-- Scroll-triggered Back to Top Arrow -->
+    <a href="#home" id="back-to-top"
+        class="opacity-0 invisible fixed bottom-8 right-4 w-12 h-12 bg-gray-900 bg-opacity-70 rounded-full flex items-center justify-center text-white border border-gray-700 hover:bg-cyan-500 hover:border-cyan-500 transition-all duration-700 ease-in-out z-40">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+<script src="script.js"></script>
+
+
+
+</html>
