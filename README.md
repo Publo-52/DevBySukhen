@@ -2,7 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Responsive](https://img.shields.io/badge/Responsive-Yes-brightgreen)](https://devbysukhen.github.io)
-![Tech Stack](https://img.shields.io/badge/HTML5-TailwindCSS-JavaScript-orange)
+![Tech Stack](https://img.shields.io/badge/Tech%20Stack-HTML5%20%7C%20TailwindCSS%20%7C%20JavaScript-orange)
+
 
 A cutting-edge portfolio website demonstrating modern web development capabilities with exceptional UX design principles.
 
@@ -11,7 +12,7 @@ A cutting-edge portfolio website demonstrating modern web development capabiliti
 ## 🌟 Key Features
 
 ### 🎯 Core Functionality
-- **Interactive UI Components** – Custom animated cursor,  
+- **Interactive UI Components** – Custom animated cursor, scroll-triggered animations 
 - **Dynamic Content** – Typing animation, filterable project gallery  
 - **Professional Contact System** – EmailJS integration with form validation  
 - **Performance Optimized** – 95+ Lighthouse score (Desktop)
