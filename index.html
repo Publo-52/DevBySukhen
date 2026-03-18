@@ -124,7 +124,7 @@
                         <img src="images/port.1.jpg" alt="Profile" class="w-full h-auto rounded-full object-cover">
                     </div>
                     <div class="absolute -bottom-5 -right-5 bg-gray-900 p-4 rounded-full glow">
-                        <div class="text-2xl font-bold gradient-text">1+</div>
+                        <div class="text-2xl font-bold gradient-text">1.5+</div>
                         <div class="text-xs text-gray-400">Years Exp</div>
                     </div>
                 </div>
@@ -153,16 +153,16 @@
                         <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg border border-gray-800">
                             <div class="text-purple-400 mb-2"><i class="fas fa-briefcase"></i></div>
                             <h4 class="font-bold">Experience</h4>
-                            <p class="text-sm text-gray-400">1+ Years</p>
+                            <p class="text-sm text-gray-400">1.5+ Years</p>
                         </div>
                         <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg border border-gray-800">
                             <div class="text-pink-400 mb-2"><i class="fas fa-project-diagram"></i></div>
                             <h4 class="font-bold">Projects</h4>
-                            <p class="text-sm text-gray-400">12+ Completed</p>
+                            <p class="text-sm text-gray-400">5+ Completed</p>
                         </div>
                     </div>
 
-                    <a href="pdf/Sukhendas_Resume.pdf" target="_blank"
+                    <a href="pdf/resume_sukhen_das (1).pdf" target="_blank"
                         class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 glow-hover btn-hover">
                         <i class="fas fa-download mr-2"></i> Download Resume
                     </a>
@@ -828,10 +828,46 @@
         class="opacity-0 invisible fixed bottom-8 right-4 w-12 h-12 bg-gray-900 bg-opacity-70 rounded-full flex items-center justify-center text-white border border-gray-700 hover:bg-cyan-500 hover:border-cyan-500 transition-all duration-700 ease-in-out z-40">
         <i class="fas fa-arrow-up"></i>
     </a>
+
+    <!-- Chatbot Toggle Button -->
+    <div class="chatbot-toggle">
+        <i class="fas fa-robot text-white text-2xl"></i>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container glass-card">
+        <div class="chatbot-header bg-gradient-to-r from-purple-600 to-blue-500 p-4 flex justify-between items-center">
+            <h3 class="text-white font-bold">Ask SukhenBot</h3>
+            <button class="chatbot-close text-white">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-body p-4 h-80 overflow-y-auto bg-gray-800">
+            <div class="chatbot-message chatbot-response mb-4">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-robot text-white text-sm"></i>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-3 max-w-xs">
+                        <p class="text-white">👋 Hi, I'm SukhenBot. Ask me anything — about Sukhen, web dev, design, or
+                            even career tips!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input p-4 bg-gray-900 flex">
+            <input type="text" placeholder="Type your question..."
+                class="flex-grow px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+            <button
+                class="chatbot-send px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-r-lg hover:from-purple-700 hover:to-blue-600 transition duration-300">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>
 <script src="script.js"></script>
-
 
 
 </html>

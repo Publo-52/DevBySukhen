@@ -548,6 +548,125 @@ function setupPortfolioFilter() {
     showAllProjects();
 }
 
+// Chatbot Elements
+const chatbotToggle = document.querySelector('.chatbot-toggle');
+const chatbotContainer = document.querySelector('.chatbot-container');
+const chatbotClose = document.querySelector('.chatbot-close');
+const chatbotSend = document.querySelector('.chatbot-send');
+const chatbotInput = document.querySelector('.chatbot-input input');
+const chatbotBody = document.querySelector('.chatbot-body');
 
+// Toggle Chatbot Visibility
+chatbotToggle.addEventListener('click', () => {
+    chatbotContainer.classList.toggle('active');
+});
 
+chatbotClose.addEventListener('click', () => {
+    chatbotContainer.classList.remove('active');
+});
 
+// Responses
+const chatbotResponses = {
+    "who is sukhen": "Sukhen Das is a passionate web designer and developer with over 1 year of hands-on experience.",
+    "about sukhen": "Sukhen is a creative frontend developer and UI/UX designer building modern websites.",
+    "what is sukhen profession": "Sukhen works as a freelance web developer and UI designer.",
+    "sukhen das project": "Sukhen has worked on personal portfolios, task managers, e-commerce UIs, and branding design.",
+    "what technologies": "Tech stack: HTML5, Tailwind CSS, JavaScript, React.js, Node.js, MongoDB, Git, Figma.",
+    "what is web design": "Web design involves layout, colors, typography, UX, and responsive structure for websites.",
+    "what is frontend": "Frontend is what users see: HTML, CSS, JavaScript, animations, and interactivity.",
+    "what is backend": "Backend powers the app logic: Node.js, databases (MongoDB), APIs, authentication, etc.",
+    "how to learn web development": "Start with HTML/CSS → JavaScript → React → Node → build real-world projects.",
+    "default": "I'm not sure about that 🤔. Try asking about Sukhen, his work, or tech-related questions!"
+};
+
+// Keyword Map for Matching
+const responseMap = [
+    { keywords: ["who is sukhen", "about sukhen"], response: chatbotResponses["who is sukhen"] },
+    { keywords: ["profession", "what does sukhen do"], response: chatbotResponses["what is sukhen profession"] },
+    { keywords: ["project", "sukhen project"], response: chatbotResponses["sukhen das project"] },
+    { keywords: ["technology", "technologies", "tech stack"], response: chatbotResponses["what technologies"] },
+    { keywords: ["web design"], response: chatbotResponses["what is web design"] },
+    { keywords: ["frontend"], response: chatbotResponses["what is frontend"] },
+    { keywords: ["backend"], response: chatbotResponses["what is backend"] },
+    { keywords: ["learn web", "how to learn"], response: chatbotResponses["how to learn web development"] }
+];
+
+// Add User Message
+function addUserMessage(message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'chatbot-message chatbot-user mb-4';
+    messageDiv.innerHTML = `
+        <div class="flex items-start justify-end">
+            <div class="bg-purple-500 rounded-lg p-3 max-w-xs">
+                <p class="text-white">${message}</p>
+            </div>
+        </div>
+    `;
+    chatbotBody.appendChild(messageDiv);
+    scrollToBottom();
+}
+
+// Add Bot Response with Typing Effect
+function addBotResponse(message) {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'chatbot-message chatbot-response mb-4';
+    typingDiv.innerHTML = `
+        <div class="flex items-start">
+            <div class="flex-shrink-0 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                <i class="fas fa-robot text-white text-sm"></i>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3 max-w-xs">
+                <p class="text-white typing-indicator">Typing...</p>
+            </div>
+        </div>
+    `;
+    chatbotBody.appendChild(typingDiv);
+    scrollToBottom();
+
+    setTimeout(() => {
+        typingDiv.querySelector('.typing-indicator').textContent = message;
+        scrollToBottom();
+    }, 1500);
+}
+
+// Scroll to Bottom
+function scrollToBottom() {
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+}
+
+// Get Bot Response from Keywords
+function getBotResponse(message) {
+    for (const entry of responseMap) {
+        if (entry.keywords.some(keyword => message.includes(keyword))) {
+            return entry.response;
+        }
+    }
+    return chatbotResponses["default"];
+}
+
+// Handle User Input
+function handleChatbotInput() {
+    const message = chatbotInput.value.trim();
+    if (!message) return;
+
+    addUserMessage(message);
+    chatbotInput.value = '';
+
+    const lowerMessage = message.toLowerCase();
+    const response = getBotResponse(lowerMessage);
+
+    addBotResponse(response);
+}
+
+// Event Listeners
+chatbotSend.addEventListener('click', handleChatbotInput);
+chatbotInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleChatbotInput();
+});
+
+// Auto welcome message on load
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        addBotResponse("👋 Hello! I'm SukhenBot. Ask me anything about Sukhen, his projects, or web design.");
+    }, 1000);
+});
