@@ -2,8 +2,10 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
-import { Skills } from "@/components/sections/skills";
+import { Services } from "@/components/sections/services";
 import { Projects } from "@/components/sections/projects";
+import { Testimonials } from "@/components/sections/testimonials";
+import { FAQ } from "@/components/sections/faq";
 import { Experience } from "@/components/sections/experience";
 import { Contact } from "@/components/sections/contact";
 import { BackToTop } from "@/components/ui/back-to-top";
@@ -15,8 +17,10 @@ export default function Home() {
       <main className="flex-1 flex flex-col w-full">
         <Hero />
         <About />
-        <Skills />
+        <Services />
         <Projects />
+        <Testimonials />
+        <FAQ />
         <Experience />
         <Contact />
       </main>
@@ -25,4 +29,3 @@ export default function Home() {
     </>
   );
 }
-

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/container";
@@ -8,9 +9,10 @@ import { personalInfo } from "@/data/portfolio";
 
 const navLinks = [
   { name: "About", href: "#about", id: "about" },
-  { name: "Skills", href: "#skills", id: "skills" },
+  { name: "Services", href: "#services", id: "services" },
   { name: "Projects", href: "#projects", id: "projects" },
-  { name: "Experience", href: "#experience", id: "experience" },
+  { name: "Testimonials", href: "#testimonials", id: "testimonials" },
+  { name: "FAQ", href: "#faq", id: "faq" },
   { name: "Contact", href: "#contact", id: "contact" },
 ];
 
@@ -68,22 +70,30 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out border-b border-transparent",
         isScrolled
-          ? "bg-background/85 backdrop-blur-md border-border/80 py-4 shadow-lg shadow-black/10"
-          : "bg-transparent py-6"
+          ? "bg-background/90 backdrop-blur-md border-border/80 py-3.5 shadow-lg shadow-black/20"
+          : "bg-transparent py-5"
       )}
     >
       <Container className="flex items-center justify-between">
         <a 
           href="#" 
-          className="text-xl font-bold tracking-tight text-primary hover:text-accent transition-colors flex items-center gap-1 group"
+          className="flex items-center gap-3 text-xl font-bold tracking-tight text-primary hover:text-accent transition-colors group"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <span>{personalInfo.name}</span>
+          <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-accent/40 bg-surface flex-shrink-0">
+            <Image 
+              src={personalInfo.logoImage} 
+              alt={personalInfo.brandName}
+              fill
+              className="object-contain p-0.5"
+            />
+          </div>
+          <span className="font-extrabold">{personalInfo.brandName}</span>
           <span className="text-accent group-hover:translate-x-0.5 transition-transform">.</span>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -107,9 +117,10 @@ export function Navbar() {
           <div className="h-4 w-px bg-border/60"></div>
           <a
             href={personalInfo.resume}
+            target="_blank"
             className="text-xs font-semibold uppercase tracking-wider px-3.5 py-2 rounded-lg bg-accent/10 border border-accent/30 text-accent hover:bg-accent hover:text-white transition-all duration-300"
           >
-            Hire Me
+            Resume
           </a>
         </nav>
 
@@ -126,11 +137,11 @@ export function Navbar() {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "fixed inset-0 top-[73px] bg-background/98 backdrop-blur-xl z-40 transition-all duration-300 ease-in-out md:hidden flex flex-col",
+          "fixed inset-0 top-[65px] bg-background/98 backdrop-blur-xl z-40 transition-all duration-300 ease-in-out md:hidden flex flex-col",
           mobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
         )}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-8 p-8">
+        <div className="flex flex-col items-center justify-center h-full gap-7 p-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -157,4 +168,3 @@ export function Navbar() {
     </header>
   );
 }
-
