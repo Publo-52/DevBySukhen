@@ -254,7 +254,10 @@ export function SukhenBot() {
         </div>
 
         {/* Suggestion Chips */}
-        <div className="px-3 py-2 bg-surface-secondary/40 border-t border-border/40 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <div 
+          className="px-3 py-2 bg-surface-secondary/60 border-t border-border/40 flex items-center gap-1.5 overflow-x-auto no-scrollbar"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {suggestedQuestions.map(q => (
             <button
               key={q}
