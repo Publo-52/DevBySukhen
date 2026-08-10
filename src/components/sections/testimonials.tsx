@@ -2,11 +2,16 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { testimonials } from "@/data/portfolio";
+import { testimonials, personalInfo } from "@/data/portfolio";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Star, Quote, Send, Loader2, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const EMAILJS_PUBLIC_KEY = "i7bzv9oIiI_04XGKs";
+const EMAILJS_SERVICE_ID = "service_weu46mj";
+const EMAILJS_TEMPLATE_ID = "template_osiyarc";
+const FORMSPREE_URL = "https://formspree.io/f/manjkwqg";
 
 export function Testimonials() {
   const [feedbackForm, setFeedbackForm] = useState({
@@ -26,32 +31,68 @@ export function Testimonials() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    let sentSuccessfully = false;
+
+    // 1. Try EmailJS API
     try {
-      // Send feedback submission to Formspree endpoint
-      await fetch("https://formspree.io/f/manjkwqg", {
+      const emailjsRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          type: "Client Feedback / Testimonial",
-          name: feedbackForm.name,
-          role: feedbackForm.role,
-          rating: `${feedbackForm.rating} Stars`,
-          message: feedbackForm.message
-        }),
+          service_id: EMAILJS_SERVICE_ID,
+          template_id: EMAILJS_TEMPLATE_ID,
+          user_id: EMAILJS_PUBLIC_KEY,
+          template_params: {
+            from_name: feedbackForm.name,
+            role: feedbackForm.role,
+            rating: `${feedbackForm.rating} Stars`,
+            message: feedbackForm.message
+          }
+        })
       });
 
-      setIsSubmitted(true);
-      setFeedbackForm({ name: "", role: "", rating: 5, message: "" });
+      if (emailjsRes.ok) {
+        sentSuccessfully = true;
+      }
     } catch (err) {
-      console.error("Testimonial submit error:", err);
-      // Fallback fallback success state
-      setIsSubmitted(true);
-    } finally {
-      setIsSubmitting(false);
+      console.warn("Testimonial EmailJS send failed:", err);
     }
+
+    // 2. Fallback to Formspree API
+    if (!sentSuccessfully) {
+      try {
+        const formspreeRes = await fetch(FORMSPREE_URL, {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            type: "Client Testimonial Submission",
+            name: feedbackForm.name,
+            role: feedbackForm.role,
+            rating: `${feedbackForm.rating} Stars`,
+            message: feedbackForm.message
+          }),
+        });
+
+        if (formspreeRes.ok) {
+          sentSuccessfully = true;
+        }
+      } catch (err) {
+        console.warn("Testimonial Formspree fallback failed:", err);
+      }
+    }
+
+    // 3. Fallback to mailto
+    if (!sentSuccessfully) {
+      const mailBody = `Feedback from ${feedbackForm.name} (${feedbackForm.role})\nRating: ${feedbackForm.rating}/5 Stars\n\nReview:\n${feedbackForm.message}`;
+      window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent("Client Feedback")}&body=${encodeURIComponent(mailBody)}`;
+    }
+
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    setFeedbackForm({ name: "", role: "", rating: 5, message: "" });
   };
 
   return (

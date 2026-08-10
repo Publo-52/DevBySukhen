@@ -4,8 +4,13 @@ import { useState } from "react";
 import { personalInfo } from "@/data/portfolio";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { Mail, Send, Loader2, CheckCircle2, Copy, Check, MapPin, MessageSquare, PhoneCall, AlertCircle } from "lucide-react";
+import { Mail, Send, Loader2, CheckCircle2, Copy, Check, MapPin, MessageSquare, PhoneCall } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
+
+const EMAILJS_PUBLIC_KEY = "i7bzv9oIiI_04XGKs";
+const EMAILJS_SERVICE_ID = "service_weu46mj";
+const EMAILJS_TEMPLATE_ID = "template_osiyarc";
+const FORMSPREE_URL = "https://formspree.io/f/manjkwqg";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -17,7 +22,6 @@ export function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleCopyEmail = () => {
@@ -36,43 +40,74 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setErrorMessage("");
 
     const fullName = `${formData.firstName} ${formData.lastName}`.trim() || formData.firstName;
-    const subject = formData.subject.trim() || "New Portfolio Inquiry";
+    const subjectLine = formData.subject.trim() || "New Portfolio Inquiry";
 
+    // 1. Try EmailJS API
+    let sentSuccessfully = false;
     try {
-      // Post to Formspree endpoint
-      const response = await fetch("https://formspree.io/f/manjkwqg", {
+      const emailjsRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: fullName,
-          email: formData.email,
-          subject: subject,
-          message: formData.message
-        }),
+          service_id: EMAILJS_SERVICE_ID,
+          template_id: EMAILJS_TEMPLATE_ID,
+          user_id: EMAILJS_PUBLIC_KEY,
+          template_params: {
+            from_name: fullName,
+            from_email: formData.email,
+            reply_to: formData.email,
+            name: fullName,
+            email: formData.email,
+            user_email: formData.email,
+            subject: subjectLine,
+            message: formData.message
+          }
+        })
       });
 
-      if (response.ok) {
-        setIsSuccess(true);
-        setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
-      } else {
-        throw new Error("Formspree service returned non-ok status");
+      if (emailjsRes.ok) {
+        sentSuccessfully = true;
       }
     } catch (err) {
-      console.error("Form submission error:", err);
-      setErrorMessage("Opening your default mail client as fallback...");
-      
-      // Fallback mailto trigger
-      const mailBody = `Name: ${fullName}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-      window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
-    } finally {
-      setIsSubmitting(false);
+      console.warn("EmailJS send failed, trying Formspree fallback...", err);
     }
+
+    // 2. Fallback to Formspree if EmailJS didn't succeed
+    if (!sentSuccessfully) {
+      try {
+        const formspreeRes = await fetch(FORMSPREE_URL, {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: fullName,
+            email: formData.email,
+            subject: subjectLine,
+            message: formData.message
+          }),
+        });
+
+        if (formspreeRes.ok) {
+          sentSuccessfully = true;
+        }
+      } catch (err) {
+        console.warn("Formspree fallback failed...", err);
+      }
+    }
+
+    // 3. Ultimate fallback: mailto client link if APIs are unreachable
+    if (!sentSuccessfully) {
+      const mailBody = `Name: ${fullName}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+      window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(mailBody)}`;
+    }
+
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
   };
 
   return (
@@ -174,8 +209,8 @@ export function Contact() {
                 <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-primary mb-2">Message Delivered!</h3>
-                <p className="text-secondary mb-6">Thank you for reaching out, Sukhen will review your message and reply promptly.</p>
+                <h3 className="text-2xl font-bold text-primary mb-2">Message Sent Successfully!</h3>
+                <p className="text-secondary mb-6">Thank you for reaching out, your message has been sent to Sukhen ({personalInfo.email}).</p>
                 <button
                   onClick={() => setIsSuccess(false)}
                   className="text-xs font-mono text-accent hover:underline"
@@ -250,13 +285,6 @@ export function Contact() {
                     placeholder="Describe your project goals or request..."
                   ></textarea>
                 </div>
-
-                {errorMessage && (
-                  <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs flex items-center gap-2">
-                    <AlertCircle size={16} />
-                    <span>{errorMessage}</span>
-                  </div>
-                )}
                 
                 <Button 
                   type="submit" 
