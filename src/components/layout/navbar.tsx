@@ -85,6 +85,7 @@ export function Navbar() {
               src={personalInfo.logoImage} 
               alt={personalInfo.brandName}
               fill
+              sizes="32px"
               className="object-contain p-0.5"
             />
           </div>

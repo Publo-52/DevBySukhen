@@ -17,6 +17,7 @@ export function Footer() {
                   src={personalInfo.logoImage} 
                   alt={personalInfo.brandName}
                   fill
+                  sizes="36px"
                   className="object-contain p-0.5"
                 />
               </div>
