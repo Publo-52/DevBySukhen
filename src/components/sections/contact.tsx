@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { personalInfo } from "@/data/portfolio";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
@@ -44,38 +45,35 @@ export function Contact() {
     const fullName = `${formData.firstName} ${formData.lastName}`.trim() || formData.firstName;
     const subjectLine = formData.subject.trim() || "New Portfolio Inquiry";
 
-    // 1. Try EmailJS API
-    let sentSuccessfully = false;
-    try {
-      const emailjsRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          service_id: EMAILJS_SERVICE_ID,
-          template_id: EMAILJS_TEMPLATE_ID,
-          user_id: EMAILJS_PUBLIC_KEY,
-          template_params: {
-            from_name: fullName,
-            from_email: formData.email,
-            reply_to: formData.email,
-            name: fullName,
-            email: formData.email,
-            user_email: formData.email,
-            subject: subjectLine,
-            message: formData.message
-          }
-        })
-      });
+    let sent = false;
 
-      if (emailjsRes.ok) {
-        sentSuccessfully = true;
+    // 1. Send via @emailjs/browser SDK
+    try {
+      const emailjsResult = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: fullName,
+          from_email: formData.email,
+          reply_to: formData.email,
+          name: fullName,
+          email: formData.email,
+          user_email: formData.email,
+          subject: subjectLine,
+          message: formData.message
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      if (emailjsResult.status === 200 || emailjsResult.text === "OK") {
+        sent = true;
       }
     } catch (err) {
-      console.warn("EmailJS send failed, trying Formspree fallback...", err);
+      console.warn("EmailJS SDK failed, trying Formspree fallback:", err);
     }
 
-    // 2. Fallback to Formspree if EmailJS didn't succeed
-    if (!sentSuccessfully) {
+    // 2. Fallback to Formspree API
+    if (!sent) {
       try {
         const formspreeRes = await fetch(FORMSPREE_URL, {
           method: "POST",
@@ -92,15 +90,15 @@ export function Contact() {
         });
 
         if (formspreeRes.ok) {
-          sentSuccessfully = true;
+          sent = true;
         }
       } catch (err) {
-        console.warn("Formspree fallback failed...", err);
+        console.warn("Formspree fallback failed:", err);
       }
     }
 
-    // 3. Ultimate fallback: mailto client link if APIs are unreachable
-    if (!sentSuccessfully) {
+    // 3. Fallback to mailto client trigger
+    if (!sent) {
       const mailBody = `Name: ${fullName}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
       window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(mailBody)}`;
     }
@@ -209,7 +207,7 @@ export function Contact() {
                 <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-primary mb-2">Message Sent Successfully!</h3>
+                <h3 className="text-2xl font-bold text-primary mb-2">Message Delivered!</h3>
                 <p className="text-secondary mb-6">Thank you for reaching out, your message has been sent to Sukhen ({personalInfo.email}).</p>
                 <button
                   onClick={() => setIsSuccess(false)}

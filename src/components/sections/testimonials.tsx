@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import emailjs from "@emailjs/browser";
 import { testimonials, personalInfo } from "@/data/portfolio";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -31,35 +32,31 @@ export function Testimonials() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    let sentSuccessfully = false;
+    let sent = false;
 
-    // 1. Try EmailJS API
+    // 1. Try EmailJS SDK
     try {
-      const emailjsRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          service_id: EMAILJS_SERVICE_ID,
-          template_id: EMAILJS_TEMPLATE_ID,
-          user_id: EMAILJS_PUBLIC_KEY,
-          template_params: {
-            from_name: feedbackForm.name,
-            role: feedbackForm.role,
-            rating: `${feedbackForm.rating} Stars`,
-            message: feedbackForm.message
-          }
-        })
-      });
+      const emailjsResult = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: feedbackForm.name,
+          role: feedbackForm.role,
+          rating: `${feedbackForm.rating} Stars`,
+          message: feedbackForm.message
+        },
+        EMAILJS_PUBLIC_KEY
+      );
 
-      if (emailjsRes.ok) {
-        sentSuccessfully = true;
+      if (emailjsResult.status === 200 || emailjsResult.text === "OK") {
+        sent = true;
       }
     } catch (err) {
-      console.warn("Testimonial EmailJS send failed:", err);
+      console.warn("Testimonial EmailJS SDK failed:", err);
     }
 
     // 2. Fallback to Formspree API
-    if (!sentSuccessfully) {
+    if (!sent) {
       try {
         const formspreeRes = await fetch(FORMSPREE_URL, {
           method: "POST",
@@ -77,7 +74,7 @@ export function Testimonials() {
         });
 
         if (formspreeRes.ok) {
-          sentSuccessfully = true;
+          sent = true;
         }
       } catch (err) {
         console.warn("Testimonial Formspree fallback failed:", err);
@@ -85,7 +82,7 @@ export function Testimonials() {
     }
 
     // 3. Fallback to mailto
-    if (!sentSuccessfully) {
+    if (!sent) {
       const mailBody = `Feedback from ${feedbackForm.name} (${feedbackForm.role})\nRating: ${feedbackForm.rating}/5 Stars\n\nReview:\n${feedbackForm.message}`;
       window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent("Client Feedback")}&body=${encodeURIComponent(mailBody)}`;
     }
