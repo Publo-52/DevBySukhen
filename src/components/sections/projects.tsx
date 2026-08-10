@@ -75,7 +75,7 @@ export function Projects() {
                 )}
                 onClick={() => setSelectedProject(project)}
               >
-                <ProjectCardGraphic projectId={project.id} />
+                <ProjectCardGraphic category={project.category} title={project.title} projectId={project.id} />
                 <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <span className="bg-background/90 text-primary px-4 py-2 rounded-full text-xs font-semibold shadow-lg backdrop-blur-sm border border-border flex items-center gap-1.5">
                     View Details <ArrowUpRight size={14} />
@@ -158,7 +158,7 @@ export function Projects() {
             <div className="p-6 sm:p-8 md:p-10 flex flex-col gap-10">
               {/* Dynamic Cover Illustration */}
               <div className="w-full aspect-video bg-background border border-border rounded-xl flex items-center justify-center overflow-hidden">
-                <ProjectCardGraphic projectId={selectedProject.id} />
+                <ProjectCardGraphic category={selectedProject.category} title={selectedProject.title} projectId={selectedProject.id} />
               </div>
 
               {/* Grid layout for details */}
