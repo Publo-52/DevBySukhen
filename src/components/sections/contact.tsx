@@ -4,12 +4,19 @@ import { useState } from "react";
 import { personalInfo } from "@/data/portfolio";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { Mail, Send, Loader2, CheckCircle2 } from "lucide-react";
+import { Mail, Send, Loader2, CheckCircle2, Copy, Check } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(personalInfo.email);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +31,7 @@ export function Contact() {
       setTimeout(() => {
         setIsSuccess(false);
       }, 5000);
-    }, 1500);
+    }, 1200);
   };
 
   return (
@@ -44,15 +51,28 @@ export function Contact() {
             </p>
 
             <div className="flex flex-col gap-6 mt-auto">
-              <a 
-                href={`mailto:${personalInfo.email}`} 
-                className="flex items-center gap-4 text-secondary hover:text-accent transition-colors group w-fit"
-              >
-                <div className="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center group-hover:border-accent/50 transition-colors">
-                  <Mail size={20} />
-                </div>
-                <span className="font-medium text-lg">{personalInfo.email}</span>
-              </a>
+              <div className="flex items-center gap-3">
+                <a 
+                  href={`mailto:${personalInfo.email}`} 
+                  className="flex items-center gap-4 text-secondary hover:text-accent transition-colors group"
+                >
+                  <div className="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center group-hover:border-accent/50 transition-colors">
+                    <Mail size={20} />
+                  </div>
+                  <span className="font-medium text-lg">{personalInfo.email}</span>
+                </a>
+
+                <button
+                  onClick={handleCopyEmail}
+                  className="p-2.5 rounded-full bg-surface border border-border text-muted hover:text-primary hover:border-accent transition-all"
+                  title="Copy email to clipboard"
+                >
+                  {copiedEmail ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
+                </button>
+                {copiedEmail && (
+                  <span className="text-xs font-mono text-emerald-400 animate-fade-in">Copied!</span>
+                )}
+              </div>
               
               <a 
                 href={personalInfo.linkedin}

@@ -11,135 +11,138 @@ import {
 } from "lucide-react";
 
 export const personalInfo = {
-  name: "Sukhen",
+  name: "Sukhen Das",
   role: "Software Developer",
   tagline: "building practical, secure and scalable web applications.",
-  about: "I'm a BCA student and aspiring software developer who enjoys building practical applications that solve real problems. My interests include modern web development, backend systems, databases, cybersecurity and cloud technologies. I focus on learning by building—turning ideas into functional, well-structured and maintainable software.",
-  education: "Bachelor of Computer Applications",
+  about: "I'm a BCA student and software developer passionate about crafting robust full-stack applications. My core technical strengths span modern web development, backend architecture, relational & NoSQL databases, cybersecurity, and cloud services. I excel at turning complex requirements into clean, performant, and user-centered digital solutions.",
+  education: "Bachelor of Computer Applications (BCA)",
+  institution: "Computer Science & Application",
   location: "India",
   status: "Available for opportunities",
-  email: "your.email@example.com",
+  email: "sukhen9832@gmail.com",
   github: "https://github.com/Publo-52",
   linkedin: "https://www.linkedin.com/in/sukhen-9832das",
-  resume: "/resume.pdf"
+  resume: "#contact"
 };
 
 export const skills = {
   frontend: [
-    { name: "HTML", icon: Layout },
-    { name: "CSS", icon: Layout },
-    { name: "JavaScript", icon: Terminal },
+    { name: "HTML5 / CSS3", icon: Layout },
+    { name: "JavaScript (ES6+)", icon: Terminal },
+    { name: "TypeScript", icon: Code2 },
     { name: "React", icon: Code2 },
     { name: "Next.js", icon: Globe },
     { name: "Tailwind CSS", icon: Layout },
   ],
   backend: [
     { name: "Node.js", icon: Server },
-    { name: "Express", icon: Server },
+    { name: "Express.js", icon: Server },
     { name: "REST APIs", icon: Globe },
-    { name: "Authentication", icon: Lock },
+    { name: "JWT Authentication", icon: Lock },
   ],
   database: [
     { name: "PostgreSQL", icon: Database },
     { name: "Supabase", icon: Database },
     { name: "MongoDB", icon: Database },
-    { name: "SQL", icon: Database },
+    { name: "SQL & Schema Design", icon: Database },
   ],
   tools: [
-    { name: "Git", icon: Terminal },
-    { name: "GitHub", icon: Terminal },
+    { name: "Git & GitHub", icon: Terminal },
     { name: "VS Code", icon: Code2 },
-    { name: "Vercel", icon: Globe },
+    { name: "Vercel & Netlify", icon: Globe },
+    { name: "Postman", icon: Server },
   ],
   interests: [
-    { name: "Cybersecurity", icon: Shield },
-    { name: "Cloud Security", icon: Shield },
-    { name: "AI", icon: Cpu },
-    { name: "System Design", icon: Server },
+    { name: "Web Security & OWASP", icon: Shield },
+    { name: "Cloud Architecture", icon: Shield },
+    { name: "AI Integration", icon: Cpu },
+    { name: "Distributed Systems", icon: Server },
   ]
 };
+
+export const projectCategories = ["All", "Full-Stack", "Management", "Frontend"];
 
 export const projects = [
   {
     id: "online-assessment",
     title: "Online Assessment Platform",
+    category: "Full-Stack",
     type: "Full-Stack Web App",
-    description: "A comprehensive examination platform featuring timed assessments, camera monitoring, and detailed result management.",
-    image: "/api/placeholder/800/500",
-    technologies: ["React", "Node.js", "MongoDB", "Express"],
-    liveUrl: "#",
-    githubUrl: "#",
+    description: "A comprehensive examination platform featuring timed assessments, secure webcam proctoring monitoring, automated evaluation, and detailed analytics for educators.",
+    technologies: ["React", "Node.js", "MongoDB", "Express", "WebRTC"],
+    liveUrl: "https://github.com/Publo-52",
+    githubUrl: "https://github.com/Publo-52",
     features: [
-      "Student authentication and profile management",
-      "Admin dashboard for quiz creation",
-      "Chapter-wise questions and timed examinations",
-      "Camera monitoring during tests",
-      "Detailed result analytics and management"
+      "Secure student authentication and active profile management",
+      "Interactive admin dashboard for exam creation and question bank management",
+      "Chapter-wise timed examinations with auto-submit capabilities",
+      "Real-time webcam monitoring and anti-cheating alerts during tests",
+      "Comprehensive performance analytics and score export"
     ],
-    challenges: "Managing real-time state for timed exams and implementing secure camera monitoring without compromising performance.",
-    solution: "Utilized WebRTC for camera access and a combination of local storage and periodic server syncing to ensure exam state is preserved even if the connection drops."
+    challenges: "Managing real-time synchronized state for timed exams and implementing non-intrusive webcam monitoring without degrading frontend performance.",
+    solution: "Utilized WebRTC for camera access alongside periodic local state syncing to ensure seamless exam recovery even in intermittent network environments."
   },
   {
     id: "physio-management",
-    title: "Physiotherapy Management System",
+    title: "Physiotherapy Clinic Management System",
+    category: "Management",
     type: "Management Dashboard",
-    description: "A clinic management system streamlining patient records, appointment scheduling, and payment tracking.",
-    image: "/api/placeholder/800/500",
-    technologies: ["Next.js", "Tailwind CSS", "Supabase", "PostgreSQL"],
-    liveUrl: "#",
-    githubUrl: "#",
+    description: "A full-featured healthcare management portal streamlining patient medical records, appointment schedules, payment tracking, and doctor availability.",
+    technologies: ["Next.js", "Tailwind CSS", "Supabase", "PostgreSQL", "TypeScript"],
+    liveUrl: "https://github.com/Publo-52",
+    githubUrl: "https://github.com/Publo-52",
     features: [
-      "Patient records and history management",
-      "Payment tracking and due amount alerts",
-      "Appointment scheduling calendar",
-      "Comprehensive admin dashboard",
-      "Role-based access control"
+      "Electronic patient health records and treatment history tracking",
+      "Automated payment calculation with due amount tracking & reminders",
+      "Interactive appointment booking calendar with slot management",
+      "Role-based access control (Admin, Doctor, Receptionist)",
+      "Financial summary reporting and patient progress graphs"
     ],
-    challenges: "Designing a schema that efficiently handles complex patient histories and recurring appointments while keeping the UI intuitive for non-technical clinic staff.",
-    solution: "Implemented a normalized relational database in PostgreSQL via Supabase and built a heavily form-optimized UI using React Hook Form and Zod for validation."
+    challenges: "Architecting a relational schema to handle complex patient history records while maintaining rapid page load speeds.",
+    solution: "Built a normalized relational database in PostgreSQL via Supabase, utilizing strict server-side validation and optimized caching strategies."
   },
   {
     id: "algo-visualizer",
-    title: "Algorithm Visualization Platform",
+    title: "Algorithm & Data Structure Visualizer",
+    category: "Frontend",
     type: "Educational Tool",
-    description: "An interactive platform that visualizes complex algorithms and data structures step-by-step for educational purposes.",
-    image: "/api/placeholder/800/500",
-    technologies: ["React", "TypeScript", "Tailwind CSS"],
-    liveUrl: "#",
-    githubUrl: "#",
+    description: "An interactive educational tool that visualizes sorting, searching, and graph algorithms step-by-step to aid computer science learning.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    liveUrl: "https://github.com/Publo-52",
+    githubUrl: "https://github.com/Publo-52",
     features: [
-      "Step-by-step execution visualization",
-      "Animated data structures (Arrays, Trees, Graphs)",
-      "Custom problem input and edge-case testing",
-      "Time and space complexity explanations",
-      "Learning-focused intuitive UI"
+      "Step-by-step execution visualization with speed controls",
+      "Animated data structures including Arrays, Binary Trees, and Graphs",
+      "Custom array input generator and edge-case scenario testing",
+      "Real-time time and space complexity explanations",
+      "Dark theme UI engineered for immersive focus"
     ],
-    challenges: "Creating smooth, understandable animations for complex recursive algorithms like Merge Sort and Tree Traversals.",
-    solution: "Used Framer Motion and a custom state machine to track each step of the algorithm's execution, allowing users to pause, rewind, and play the visualization."
+    challenges: "Rendering smooth 60fps step-by-step animations for recursive algorithms such as Merge Sort and Quick Sort.",
+    solution: "Designed a lightweight custom state engine with step control hooks, ensuring predictable playback and timeline scrub controls."
   }
 ];
 
 export const experience = [
   {
-    year: "2026 - Present",
-    role: "Independent Projects",
-    company: "Self-Directed Learning",
-    description: "Building production-style web applications, learning modern engineering practices and working with databases, authentication and deployment."
+    year: "2024 — Present",
+    role: "Full-Stack Developer (Independent)",
+    company: "Self-Directed Software Engineering",
+    description: "Architecting and developing production-grade web applications with modern stacks (React, Next.js, Node.js, PostgreSQL). Implementing RESTful APIs, secure authentication, and cloud deployment pipelines."
   }
 ];
 
 export const education = [
   {
-    degree: "Bachelor of Computer Applications",
-    institution: "Your University Name",
+    degree: "Bachelor of Computer Applications (BCA)",
+    institution: "MAKAUT University / College",
     period: "2023 — 2026",
     coursework: [
-      "Database Management Systems",
-      "Operating Systems",
-      "Software Engineering",
-      "Computer Networks",
-      "Programming",
-      "Cybersecurity"
+      "Database Management Systems (DBMS)",
+      "Data Structures & Algorithms",
+      "Operating Systems & Networking",
+      "Object-Oriented Programming (Java/C++)",
+      "Web Technologies & Software Engineering",
+      "Cybersecurity Fundamentals"
     ]
   }
 ];

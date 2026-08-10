@@ -6,6 +6,7 @@ import { Skills } from "@/components/sections/skills";
 import { Projects } from "@/components/sections/projects";
 import { Experience } from "@/components/sections/experience";
 import { Contact } from "@/components/sections/contact";
+import { BackToTop } from "@/components/ui/back-to-top";
 
 export default function Home() {
   return (
@@ -20,6 +21,8 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }
+

@@ -1,16 +1,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { projects } from "@/data/portfolio";
+import { projects, projectCategories } from "@/data/portfolio";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, X } from "lucide-react";
+import { ExternalLink, X, ArrowUpRight } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
+import { ProjectCardGraphic } from "@/components/ui/project-card-graphic";
 import { cn } from "@/lib/utils";
 
 export function Projects() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+
+  const filteredProjects = selectedCategory === "All"
+    ? projects
+    : projects.filter(p => p.category === selectedCategory);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -30,11 +36,30 @@ export function Projects() {
         <SectionHeading 
           number="03" 
           title="Selected Work" 
-          subtitle="A selection of projects I've designed, built and learned from."
+          subtitle="Featured engineering projects built to solve real-world problems."
         />
 
-        <div className="flex flex-col gap-24 mt-16">
-          {projects.map((project, index) => (
+        {/* Category Filter Tabs */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-12 border-b border-border/40">
+          {projectCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={cn(
+                "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 whitespace-nowrap",
+                selectedCategory === category
+                  ? "bg-accent text-white shadow-md shadow-accent/20 font-semibold"
+                  : "bg-surface/60 text-secondary hover:text-primary hover:bg-surface border border-border/40"
+              )}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
+        <div className="flex flex-col gap-24">
+          {filteredProjects.map((project, index) => (
             <div 
               key={project.id}
               className={cn(
@@ -42,27 +67,31 @@ export function Projects() {
                 index % 2 !== 0 ? "md:grid-cols-[1.2fr_1fr]" : "md:grid-cols-[1fr_1.2fr]"
               )}
             >
-              {/* Project Image - Alternating sides */}
+              {/* Project Dynamic Graphic Preview */}
               <div 
                 className={cn(
-                  "relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden border border-border/50 shadow-lg cursor-pointer transition-transform duration-500 hover:scale-[1.02]",
+                  "relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden border border-border/80 shadow-xl cursor-pointer transition-all duration-500 group-hover:scale-[1.01] group-hover:border-accent/40",
                   index % 2 !== 0 && "md:order-last"
                 )}
                 onClick={() => setSelectedProject(project)}
               >
-                {/* Fallback placeholder since actual images aren't available yet */}
-                <div className="absolute inset-0 bg-surface flex items-center justify-center border-b border-border">
-                  <span className="text-muted font-mono tracking-wider opacity-50">Project Preview</span>
+                <ProjectCardGraphic projectId={project.id} />
+                <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span className="bg-background/90 text-primary px-4 py-2 rounded-full text-xs font-semibold shadow-lg backdrop-blur-sm border border-border flex items-center gap-1.5">
+                    View Details <ArrowUpRight size={14} />
+                  </span>
                 </div>
-                <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              {/* Project Info */}
+              {/* Project Details */}
               <div className="flex flex-col items-start">
-                <span className="text-accent text-sm font-semibold tracking-wider uppercase mb-3">
-                  {project.type}
-                </span>
-                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-accent text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded bg-accent/10 border border-accent/20">
+                    {project.type}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4 group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
                 
@@ -70,9 +99,9 @@ export function Projects() {
                   {project.description}
                 </div>
 
-                <div className="flex flex-wrap gap-3 mb-8">
+                <div className="flex flex-wrap gap-2.5 mb-8">
                   {project.technologies.map(tech => (
-                    <span key={tech} className="text-sm font-mono text-muted bg-background px-3 py-1 rounded border border-border/30">
+                    <span key={tech} className="text-xs font-mono text-secondary bg-background px-3 py-1 rounded border border-border/50">
                       {tech}
                     </span>
                   ))}
@@ -112,8 +141,11 @@ export function Projects() {
           <div className="relative w-full max-w-4xl max-h-full bg-surface border border-border rounded-2xl shadow-2xl overflow-y-auto animate-reveal-up flex flex-col">
             
             {/* Modal Header */}
-            <div className="sticky top-0 bg-surface/90 backdrop-blur border-b border-border flex items-center justify-between p-4 sm:p-6 z-10">
-              <h3 className="text-xl font-bold text-primary">{selectedProject.title}</h3>
+            <div className="sticky top-0 bg-surface/95 backdrop-blur border-b border-border flex items-center justify-between p-4 sm:p-6 z-10">
+              <div>
+                <span className="text-xs font-mono text-accent uppercase tracking-wider block">{selectedProject.type}</span>
+                <h3 className="text-xl font-bold text-primary">{selectedProject.title}</h3>
+              </div>
               <button 
                 className="p-2 text-muted hover:text-primary transition-colors bg-background rounded-full border border-border"
                 onClick={() => setSelectedProject(null)}
@@ -124,12 +156,12 @@ export function Projects() {
 
             {/* Modal Body */}
             <div className="p-6 sm:p-8 md:p-10 flex flex-col gap-10">
-              {/* Cover */}
+              {/* Dynamic Cover Illustration */}
               <div className="w-full aspect-video bg-background border border-border rounded-xl flex items-center justify-center overflow-hidden">
-                <span className="text-muted font-mono tracking-wider opacity-50">High-Resolution Preview</span>
+                <ProjectCardGraphic projectId={selectedProject.id} />
               </div>
 
-              {/* Grid layout for info */}
+              {/* Grid layout for details */}
               <div className="grid md:grid-cols-[2fr_1fr] gap-10">
                 {/* Main details */}
                 <div className="flex flex-col gap-8">
@@ -139,12 +171,12 @@ export function Projects() {
                   </section>
                   
                   <section>
-                    <h4 className="text-lg font-bold text-primary mb-3">The Challenge</h4>
+                    <h4 className="text-lg font-bold text-primary mb-3">Key Technical Challenges</h4>
                     <p className="text-secondary leading-relaxed">{selectedProject.challenges}</p>
                   </section>
 
                   <section>
-                    <h4 className="text-lg font-bold text-primary mb-3">The Solution</h4>
+                    <h4 className="text-lg font-bold text-primary mb-3">Engineering Solution</h4>
                     <p className="text-secondary leading-relaxed">{selectedProject.solution}</p>
                   </section>
 
@@ -161,10 +193,10 @@ export function Projects() {
                 {/* Sidebar details */}
                 <div className="flex flex-col gap-8">
                   <div className="bg-background rounded-xl border border-border p-6">
-                    <h4 className="text-sm font-semibold uppercase tracking-wider text-muted mb-4">Tech Stack</h4>
+                    <h4 className="text-xs font-semibold uppercase tracking-wider text-muted mb-4 font-mono">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
                       {selectedProject.technologies.map(tech => (
-                        <span key={tech} className="text-sm font-mono text-primary bg-surface px-3 py-1 rounded border border-border/50">
+                        <span key={tech} className="text-xs font-mono text-primary bg-surface px-3 py-1.5 rounded border border-border/50">
                           {tech}
                         </span>
                       ))}
@@ -172,11 +204,11 @@ export function Projects() {
                   </div>
 
                   <div className="flex flex-col gap-3">
-                    <Button href={selectedProject.liveUrl} variant="primary" className="w-full justify-center">
-                      Live Demo <ExternalLink size={16} className="ml-2" />
+                    <Button href={selectedProject.liveUrl} variant="primary" className="w-full justify-center" target="_blank">
+                      Live Repository <ExternalLink size={16} className="ml-2" />
                     </Button>
-                    <Button href={selectedProject.githubUrl} variant="outline" className="w-full justify-center">
-                      Source Code <GithubIcon className="w-4 h-4 ml-2" />
+                    <Button href={selectedProject.githubUrl} variant="outline" className="w-full justify-center" target="_blank">
+                      View Code <GithubIcon className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
                 </div>
@@ -188,3 +220,4 @@ export function Projects() {
     </section>
   );
 }
+
