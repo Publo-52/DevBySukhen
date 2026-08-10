@@ -5,7 +5,7 @@ import { MessageSquare, PhoneCall } from "lucide-react";
 
 export function FloatingActions() {
   return (
-    <div className="fixed bottom-40 right-8 z-40 flex flex-col items-center gap-3">
+    <div className="fixed bottom-36 right-6 z-40 flex flex-col items-center gap-3">
       {/* WhatsApp Button */}
       <a
         href={personalInfo.whatsapp}

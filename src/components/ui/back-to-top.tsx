@@ -32,7 +32,7 @@ export function BackToTop() {
       onClick={scrollToTop}
       aria-label="Scroll to top"
       className={cn(
-        "fixed bottom-8 right-8 z-40 p-3 rounded-full bg-surface border border-border text-primary shadow-xl hover:border-accent hover:text-accent transition-all duration-300 transform group",
+        "fixed bottom-6 right-6 z-40 p-3 rounded-full bg-surface border border-border text-primary shadow-xl hover:border-accent hover:text-accent transition-all duration-300 transform group",
         isVisible
           ? "translate-y-0 opacity-100 scale-100"
           : "translate-y-12 opacity-0 scale-90 pointer-events-none"
