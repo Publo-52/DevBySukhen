@@ -1,6 +1,6 @@
 "use client";
 
-import { Shield, Camera, CheckCircle2, UserCheck, Calendar, Activity, Play, BarChart3 } from "lucide-react";
+import { Shield, Camera, CheckCircle2, Activity, Play, BarChart3 } from "lucide-react";
 
 interface ProjectGraphicProps {
   projectId: string;
