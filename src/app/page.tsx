@@ -9,6 +9,8 @@ import { FAQ } from "@/components/sections/faq";
 import { Experience } from "@/components/sections/experience";
 import { Contact } from "@/components/sections/contact";
 import { BackToTop } from "@/components/ui/back-to-top";
+import { SukhenBot } from "@/components/ui/chatbot";
+import { FloatingActions } from "@/components/ui/floating-actions";
 
 export default function Home() {
   return (
@@ -25,6 +27,8 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <FloatingActions />
+      <SukhenBot />
       <BackToTop />
     </>
   );

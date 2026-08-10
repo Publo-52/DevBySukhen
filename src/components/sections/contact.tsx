@@ -4,12 +4,20 @@ import { useState } from "react";
 import { personalInfo } from "@/data/portfolio";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { Mail, Send, Loader2, CheckCircle2, Copy, Check, MapPin, MessageSquare, PhoneCall } from "lucide-react";
+import { Mail, Send, Loader2, CheckCircle2, Copy, Check, MapPin, MessageSquare, PhoneCall, AlertCircle } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
 
 export function Contact() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleCopyEmail = () => {
@@ -18,20 +26,53 @@ export function Contact() {
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.id]: e.target.value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
+    setErrorMessage("");
+
+    const fullName = `${formData.firstName} ${formData.lastName}`.trim() || formData.firstName;
+    const subject = formData.subject.trim() || "New Portfolio Inquiry";
+
+    try {
+      // Post to Formspree endpoint
+      const response = await fetch("https://formspree.io/f/manjkwqg", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: fullName,
+          email: formData.email,
+          subject: subject,
+          message: formData.message
+        }),
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
+      } else {
+        throw new Error("Formspree service returned non-ok status");
+      }
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setErrorMessage("Opening your default mail client as fallback...");
       
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 5000);
-    }, 1200);
+      // Fallback mailto trigger
+      const mailBody = `Name: ${fullName}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+      window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -47,7 +88,7 @@ export function Contact() {
             </h2>
             
             <p className="text-secondary text-lg mb-12 max-w-md leading-relaxed">
-              If you have a project in mind or would like to discuss a potential collaboration, feel free to reach out directly.
+              If you have a project in mind, need a custom website, or want to discuss a potential collaboration, send a message!
             </p>
 
             <div className="flex flex-col gap-6 mt-auto">
@@ -133,56 +174,89 @@ export function Contact() {
                 <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-primary mb-2">Message Sent!</h3>
-                <p className="text-secondary">Thank you for reaching out, Sukhen will respond to your message shortly.</p>
+                <h3 className="text-2xl font-bold text-primary mb-2">Message Delivered!</h3>
+                <p className="text-secondary mb-6">Thank you for reaching out, Sukhen will review your message and reply promptly.</p>
+                <button
+                  onClick={() => setIsSuccess(false)}
+                  className="text-xs font-mono text-accent hover:underline"
+                >
+                  Send another message
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="name" className="text-sm font-medium text-primary">Name</label>
+                    <label htmlFor="firstName" className="text-sm font-medium text-primary">First Name *</label>
                     <input 
                       type="text" 
-                      id="name" 
+                      id="firstName" 
+                      value={formData.firstName}
+                      onChange={handleChange}
                       required
                       className="w-full bg-background border border-border rounded-lg px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all placeholder:text-muted"
-                      placeholder="Your Name"
+                      placeholder="John"
                     />
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="email" className="text-sm font-medium text-primary">Email</label>
+                    <label htmlFor="lastName" className="text-sm font-medium text-primary">Last Name</label>
                     <input 
-                      type="email" 
-                      id="email" 
-                      required
+                      type="text" 
+                      id="lastName" 
+                      value={formData.lastName}
+                      onChange={handleChange}
                       className="w-full bg-background border border-border rounded-lg px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all placeholder:text-muted"
-                      placeholder="your.email@example.com"
+                      placeholder="Doe"
                     />
                   </div>
                 </div>
                 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="subject" className="text-sm font-medium text-primary">Subject</label>
+                  <label htmlFor="email" className="text-sm font-medium text-primary">Email Address *</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all placeholder:text-muted"
+                    placeholder="john@example.com"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="subject" className="text-sm font-medium text-primary">Subject *</label>
                   <input 
                     type="text" 
                     id="subject" 
+                    value={formData.subject}
+                    onChange={handleChange}
                     required
                     className="w-full bg-background border border-border rounded-lg px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all placeholder:text-muted"
-                    placeholder="Project Inquiry / Hiring"
+                    placeholder="Web Development / Hiring Inquiry"
                   />
                 </div>
                 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="message" className="text-sm font-medium text-primary">Message</label>
+                  <label htmlFor="message" className="text-sm font-medium text-primary">Message *</label>
                   <textarea 
                     id="message" 
+                    value={formData.message}
+                    onChange={handleChange}
                     required
                     rows={5}
                     className="w-full bg-background border border-border rounded-lg px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-y placeholder:text-muted"
-                    placeholder="Describe your project goals..."
+                    placeholder="Describe your project goals or request..."
                   ></textarea>
                 </div>
+
+                {errorMessage && (
+                  <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs flex items-center gap-2">
+                    <AlertCircle size={16} />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
                 
                 <Button 
                   type="submit" 
@@ -194,7 +268,7 @@ export function Contact() {
                   {isSubmitting ? (
                     <>
                       <Loader2 size={18} className="animate-spin mr-2" />
-                      Sending...
+                      Sending Message...
                     </>
                   ) : (
                     <>
