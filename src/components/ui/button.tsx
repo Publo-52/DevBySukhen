@@ -40,8 +40,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     if (href) {
+      const computedRel = rel || (target === "_blank" ? "noopener noreferrer" : undefined);
       return (
-        <a href={href} target={target} rel={rel} className={combinedClassName}>
+        <a href={href} target={target} rel={computedRel} className={combinedClassName}>
           {children}
         </a>
       );

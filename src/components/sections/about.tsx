@@ -6,7 +6,7 @@ import { Download, Briefcase, GraduationCap, FolderCheck } from "lucide-react";
 
 export function About() {
   return (
-    <section id="about" className="py-24 md:py-32 bg-surface-secondary/40 border-t border-border/50">
+    <section id="about" className="py-10 md:py-14 bg-surface-secondary/40 border-t border-border/50">
       <Container>
         <div className="grid lg:grid-cols-[1fr_1.8fr] gap-12 lg:gap-16 items-center">
           

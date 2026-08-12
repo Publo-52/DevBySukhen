@@ -39,8 +39,8 @@ const responseMap: { keywords: string[]; response: string; actionUrl?: string; a
     actionLabel: "View Services"
   },
   {
-    keywords: ["project", "projects", "sukhen project", "portfolio", "work", "nexus", "fitness", "brew"],
-    response: "Sukhen has built 12+ projects including Nexus E-commerce, Physiotherapy Clinic Dashboard, Algorithm Visualizer, Fitness UI App, and Vertex Solutions Corporate Site!",
+    keywords: ["project", "projects", "sukhen project", "portfolio", "work", "devsecops", "security", "visualizer"],
+    response: "Sukhen has built featured engineering projects including the DevSecOps Deployment Platform, AI API Security Platform, and AI-Powered Algorithm Visualizer!",
     actionUrl: "#projects",
     actionLabel: "Explore Projects Section"
   },

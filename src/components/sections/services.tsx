@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export function Services() {
   return (
-    <section id="services" className="py-24 md:py-32 bg-surface-secondary/40 border-t border-border/50">
+    <section id="services" className="py-10 md:py-14 bg-surface-secondary/40 border-t border-border/50">
       <Container>
         <SectionHeading 
           number="02" 

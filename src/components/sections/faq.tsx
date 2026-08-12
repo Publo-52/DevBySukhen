@@ -15,15 +15,15 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-24 md:py-32 border-t border-border/50">
+    <section id="faq" className="py-10 md:py-14 border-t border-border/50">
       <Container>
         <SectionHeading 
-          number="05" 
+          number="06" 
           title="Frequently Asked Questions" 
           subtitle="Answers to common questions about my services, pricing, and project workflow."
         />
 
-        <div className="max-w-3xl mx-auto flex flex-col gap-4 mt-16">
+        <div className="max-w-3xl mx-auto flex flex-col gap-4 mt-8">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (

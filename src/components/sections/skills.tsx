@@ -41,7 +41,7 @@ function SkillGroup({ title, items }: SkillGroupProps) {
 
 export function Skills() {
   return (
-    <section id="skills" className="py-24 md:py-32">
+    <section id="skills" className="py-10 md:py-14">
       <Container>
         <SectionHeading 
           number="02" 

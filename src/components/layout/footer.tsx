@@ -74,7 +74,7 @@ export function Footer() {
 
         <div className="pt-8 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted font-mono">
           <p>
-            &copy; 2025 {personalInfo.brandName} Portfolio. All rights reserved.
+            &copy; 2026 {personalInfo.brandName} Portfolio. All rights reserved.
           </p>
           <p>
             Designed & Engineered by {personalInfo.name}

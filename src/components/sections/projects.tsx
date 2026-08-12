@@ -31,7 +31,7 @@ export function Projects() {
   }, [selectedProject]);
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-surface-secondary/40">
+    <section id="projects" className="py-10 md:py-14 bg-surface-secondary/40">
       <Container>
         <SectionHeading 
           number="03" 
@@ -40,7 +40,7 @@ export function Projects() {
         />
 
         {/* Category Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-12 border-b border-border/40">
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 border-b border-border/40">
           {projectCategories.map((category) => (
             <button
               key={category}
@@ -58,7 +58,7 @@ export function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div className="flex flex-col gap-24">
+        <div className="flex flex-col gap-12 md:gap-16">
           {filteredProjects.map((project, index) => (
             <div 
               key={project.id}
@@ -205,7 +205,7 @@ export function Projects() {
 
                   <div className="flex flex-col gap-3">
                     <Button href={selectedProject.liveUrl} variant="primary" className="w-full justify-center" target="_blank">
-                      Live Repository <ExternalLink size={16} className="ml-2" />
+                      Live Demo <ExternalLink size={16} className="ml-2" />
                     </Button>
                     <Button href={selectedProject.githubUrl} variant="outline" className="w-full justify-center" target="_blank">
                       View Code <GithubIcon className="w-4 h-4 ml-2" />

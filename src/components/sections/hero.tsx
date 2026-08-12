@@ -17,7 +17,7 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="pt-32 pb-20 md:pt-48 md:pb-32 min-h-screen flex items-center relative overflow-hidden">
+    <section id="home" className="pt-28 pb-12 md:pt-36 md:pb-16 min-h-fit md:min-h-[85vh] flex items-center relative overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute top-1/4 left-0 w-[450px] h-[450px] bg-accent/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
       <div className="absolute bottom-0 right-1/4 w-[550px] h-[550px] bg-accent/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>

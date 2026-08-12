@@ -109,13 +109,13 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-surface-secondary/40 border-t border-border/50">
+    <section id="contact" className="py-10 md:py-14 bg-surface-secondary/40 border-t border-border/50">
       <Container>
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
           
           {/* Left Column - Contact Info */}
           <div className="flex flex-col">
-            <span className="text-accent font-mono text-sm font-medium tracking-wider mb-4 block">06 / GET IN TOUCH</span>
+            <span className="text-accent font-mono text-sm font-medium tracking-wider mb-4 block">07 / GET IN TOUCH</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary mb-6">
               Let&apos;s build <br className="hidden lg:block" /> something incredible.
             </h2>

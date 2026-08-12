@@ -8,8 +8,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Sukhen — Software Developer",
-  description: "Portfolio of Sukhen, a software developer specializing in modern web development, backend systems, databases, and cybersecurity.",
+  title: "Sukhen Das | DevBySukhen — Web Designer & Full-Stack Developer",
+  description: "Portfolio of Sukhen Das (DevBySukhen), a software developer & web designer specializing in modern web apps, cloud-native DevSecOps, and AI security platforms.",
+  icons: {
+    icon: [
+      { url: "/images/final-logo_selected.png", type: "image/png" },
+      { url: "/images/logo_selected-portfolio.png", type: "image/png" }
+    ],
+    shortcut: "/images/final-logo_selected.png",
+    apple: "/images/final-logo_selected.png",
+  },
 };
 
 export default function RootLayout({
